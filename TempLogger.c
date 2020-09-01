@@ -26,8 +26,8 @@
 #define WRITE_OUT "/home/njm/scratch/TEMP.OUT"
 #define OUTPUT_DIV "----------------------------------------------------\n"
 #define COLUMN_HEADER "Temperature, Difference\n"
-#define ITERATIONS 2 //Set to 0 for unlimited runtime.
-#define INTERVAL 10
+#define ITERATIONS 0 //Set to 0 for unlimited runtime.
+#define INTERVAL 30
 
 float previous_temperature = 0;
 float current_temperature = 0;
@@ -107,7 +107,8 @@ int32_t BeginMonitorRoutine(){
         int err = QuerySensor();    
         if(err < ERROR_CODE_START){
             return err;
-        }    
+        }
+	previous_temperature = current_temperature;
     }
     while(iterations-- != 0 || ITERATIONS == 0);
 
